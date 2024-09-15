@@ -1,0 +1,33 @@
+<div class="w-[90%] mx-auto mt-10">
+  <table class="min-w-full border-collapse block md:table">
+    <thead class="block md:table-header-group">
+      <tr class="border border-gray-200 block md:table-row">
+        <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
+          ID
+        </th>
+        <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
+          Title
+        </th>
+        <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
+          Body
+        </th>
+      </tr>
+    </thead>
+    <tbody class="block md:table-row-group">
+      <tr
+        *ngFor="let post of paginatedPosts"
+        class="border border-gray-200 block md:table-row"
+      >
+        <td class="p-2 block md:table-cell">{{ post.id }}</td>
+        <td class="p-2 block md:table-cell">{{ post.title }}</td>
+        <td class="p-2 block md:table-cell">{{ post.body }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-paginator
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChanged)="onPageChanged($event)"
+  ></app-paginator>
+</div>
