@@ -56,4 +56,8 @@ export class PostsComponent {
   navigateToPost(id: number) {
     this.route.navigate([`/posts/${id}`]);
   }
+
+  goToCreatePost() {
+    this.route.navigate(['/posts/create']);
+  }
 }

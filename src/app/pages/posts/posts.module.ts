@@ -8,14 +8,16 @@ import { PostDetailsComponent } from '../post-details/post-details.component';
 import { EditPostComponent } from '../../edit-post/edit-post.component';
 import { LoaderComponent } from '../../components/loader/loader.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreatePostComponent } from '../../components/create-post/create-post.component';
 
 @NgModule({
   declarations: [
     PostsComponent,
     PaginatorComponent,
+    LoaderComponent,
     PostDetailsComponent,
     EditPostComponent,
-    LoaderComponent,
+    CreatePostComponent,
   ],
   imports: [CommonModule, PostsRoutingModule, ReactiveFormsModule],
 })

@@ -7,7 +7,7 @@ import { SinglePost } from '../models';
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
-  styleUrls: ['./edit-post.component.css'],
+  styleUrl: './edit-post.component.css',
 })
 export class EditPostComponent implements OnInit {
   postForm: FormGroup;

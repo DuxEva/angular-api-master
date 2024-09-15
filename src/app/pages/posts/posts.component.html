@@ -27,11 +27,20 @@
       </tbody>
     </table>
 
-    <app-paginator
-      [currentPage]="currentPage"
-      [totalPages]="totalPages"
-      (pageChanged)="onPageChanged($event)"
-    ></app-paginator>
+    <div class="flex justify-between items-center">
+      <button
+        class="bg-blue-500 p-2 rounded-md text-white mt-8"
+        (click)="goToCreatePost()"
+      >
+        Create a Post
+      </button>
+
+      <app-paginator
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChanged)="onPageChanged($event)"
+      ></app-paginator>
+    </div>
   </div>
 
   <app-loader [loading]="loading" [errorMsg]="errorMsg" />
