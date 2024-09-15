@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { Post } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -14,18 +15,31 @@ export class PostsComponent {
   postsPerPage = 10;
   totalPages: number = 0;
   loading = true;
+  errorMsg: Error | null = null;
 
-  constructor(private postsService: PostsService) {
+  constructor(private postsService: PostsService, private route: Router) {
     this.getPosts();
   }
 
   getPosts() {
-    this.postsService.getPosts().subscribe((posts) => {
-      this.posts = posts;
-      this.loading = false;
-      this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
-      this.paginatePosts();
-    });
+    this.postsService.getPosts().subscribe(
+      (posts) => {
+        this.posts = posts;
+        this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
+        this.paginatePosts();
+        this.loading = false;
+      },
+      (error) => {
+        console.error(error);
+        this.loading = false;
+        this.errorMsg = error.message;
+        console.log(this.errorMsg);
+      },
+      () => {
+        console.log('completed');
+        this.loading = false;
+      }
+    );
   }
 
   paginatePosts() {
@@ -37,5 +51,10 @@ export class PostsComponent {
   onPageChanged(page: number) {
     this.currentPage = page;
     this.paginatePosts();
+  }
+
+  navigateToPost(id: number) {
+    console.log(`Navigating to post ${id}`);
+    this.route.navigate([`/posts/${id}`]);
   }
 }

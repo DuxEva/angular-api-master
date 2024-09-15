@@ -1,38 +1,51 @@
-<div class="w-[90%] mx-auto mt-10"
-*ngIf="!loading">
-  <table class="min-w-full border-collapse block md:table">
-    <thead class="block md:table-header-group">
-      <tr class="border border-gray-200 block md:table-row">
-        <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
-          ID
-        </th>
-        <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
-          Title
-        </th>
-        <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
-          Body
-        </th>
-      </tr>
-    </thead>
-    <tbody class="block md:table-row-group">
-      <tr
-        *ngFor="let post of paginatedPosts"
-        class="border border-gray-200 block md:table-row"
-      >
-        <td class="p-2 block md:table-cell">{{ post.id }}</td>
-        <td class="p-2 block md:table-cell">{{ post.title }}</td>
-        <td class="p-2 block md:table-cell">{{ post.body }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="flex justify-center items-center w-screen py-8">
+  <div class="w-[90%] mx-auto" [ngClass]="{ hidden: loading || errorMsg }">
+    <table class="min-w-full border-collapse block md:table">
+      <thead class="block md:table-header-group">
+        <tr class="border border-gray-200 block md:table-row">
+          <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
+            ID
+          </th>
+          <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
+            Title
+          </th>
+          <th class="bg-gray-100 p-2 text-left font-medium block md:table-cell">
+            Body
+          </th>
+        </tr>
+      </thead>
+      <tbody class="block md:table-row-group">
+        <tr
+          *ngFor="let post of paginatedPosts"
+          class="border border-gray-200 block md:table-row cursor-pointer"
+          (click)="navigateToPost(post.id)"
+        >
+          <td class="p-2 block md:table-cell">{{ post.id }}</td>
+          <td class="p-2 block md:table-cell">{{ post.title }}</td>
+          <td class="p-2 block md:table-cell">{{ post.body }}</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <app-paginator
-    [currentPage]="currentPage"
-    [totalPages]="totalPages"
-    (pageChanged)="onPageChanged($event)"
-  ></app-paginator>
-</div>
+    <app-paginator
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChanged)="onPageChanged($event)"
+    ></app-paginator>
+  </div>
 
-<div class="w-screen h-screen flex justify-center items-center" *ngIf="loading">
-  <h1 class="animate-bounce">Loading...</h1>
+  <div
+    class="w-screen h-screen flex justify-center items-center"
+    *ngIf="loading || errorMsg"
+  >
+    <h1
+      class="animate-bounce"
+      [ngClass]="{
+        'text-red-500': errorMsg,
+        'text-blue-500': !errorMsg
+      }"
+    >
+      {{ errorMsg ? "Fail to load posts data" : "Loading..." }}
+    </h1>
+  </div>
 </div>

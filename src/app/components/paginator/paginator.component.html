@@ -1,8 +1,7 @@
 <div
-  class="w-full flex items-center justify-end space-x-1 mt-8"
+  class="flex items-center justify-end space-x-1 mt-8"
   *ngIf="totalPages > 1"
 >
-  <!-- Previous Button -->
   <button
     class="px-4 py-2 text-gray-500 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
     (click)="prevPage()"
@@ -11,7 +10,6 @@
     Previous
   </button>
 
-  <!-- Page Numbers -->
   <button
     *ngFor="let page of totalPagesArray; let i = index"
     class="px-4 py-2"
@@ -24,7 +22,6 @@
     {{ i + 1 }}
   </button>
 
-  <!-- Next Button -->
   <button
     class="px-4 py-2 text-gray-500 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
     (click)="nextPage()"
