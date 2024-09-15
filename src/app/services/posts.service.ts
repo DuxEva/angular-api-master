@@ -39,6 +39,10 @@ export class PostsService {
     );
   }
 
+  updatePost(post: SinglePost): Observable<SinglePost> {
+    return this.http.put<SinglePost>(`${this.API_URL}/posts/${post.id}`, post);
+  }
+
   getCommentsByPostId(postId: number): Observable<PostComment[]> {
     return this.http
       .get<PostComment[]>(`${this.API_URL}/posts/${postId}/comments`)

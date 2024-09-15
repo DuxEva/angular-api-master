@@ -10,13 +10,18 @@
       <p>
         <span class="font-medium">Posted by:</span> User ID {{ post.userId }}
       </p>
-      <button class="bg-blue-500 p-2 rounded-md text-white">Edit Post</button>
+      <button
+        (click)="onNavigateEditPost()"
+        class="bg-blue-500 p-2 rounded-md text-white"
+      >
+        Edit Post
+      </button>
     </div>
   </div>
 
   <!-- Comments Section -->
   <div
-    *ngIf="comments.length > 0"
+    *ngIf="comments"
     class="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-xl"
   >
     <h2 class="text-2xl font-semibold mb-4 text-gray-900 border-b pb-2">
@@ -38,11 +43,15 @@
 
   <!-- No Comments Section -->
   <div
-    *ngIf="comments.length === 0"
+    *ngIf="!comments"
     class="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-xl"
+    [ngClass]="{ hidden: loading }"
   >
     <p class="text-gray-500 text-center">
       No comments available for this post.
     </p>
   </div>
 </div>
+
+<!-- Loader Component -->
+<app-loader [loading]="loading" [errorMsg]="errorMsg"></app-loader>

@@ -34,18 +34,5 @@
     ></app-paginator>
   </div>
 
-  <div
-    class="w-screen h-screen flex justify-center items-center"
-    *ngIf="loading || errorMsg"
-  >
-    <h1
-      class="animate-bounce"
-      [ngClass]="{
-        'text-red-500': errorMsg,
-        'text-blue-500': !errorMsg
-      }"
-    >
-      {{ errorMsg ? "Fail to load posts data" : "Loading..." }}
-    </h1>
-  </div>
+  <app-loader [loading]="loading" [errorMsg]="errorMsg" />
 </div>
