@@ -13,6 +13,7 @@ export class PostsComponent {
   currentPage = 1;
   postsPerPage = 10;
   totalPages: number = 0;
+  loading = true;
 
   constructor(private postsService: PostsService) {
     this.getPosts();
@@ -21,6 +22,7 @@ export class PostsComponent {
   getPosts() {
     this.postsService.getPosts().subscribe((posts) => {
       this.posts = posts;
+      this.loading = false;
       this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
       this.paginatePosts();
     });
