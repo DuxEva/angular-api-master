@@ -1,2 +1,12 @@
-<p>App Works!!</p>
+<div
+  class="h-screen w-screen flex justify-center items-center"
+  *ngIf="isFirstLoad"
+>
+  <button
+    (click)="onNavigatePosts()"
+    class="bg-blue-500 p-2 rounded-md text-white"
+  >
+    View Posts
+  </button>
+</div>
 <router-outlet></router-outlet>
