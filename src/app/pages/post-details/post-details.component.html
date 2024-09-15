@@ -1,0 +1,45 @@
+<div class="max-w-4xl mx-auto p-4 space-y-6">
+  <!-- Post Details Section -->
+  <div
+    *ngIf="post"
+    class="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-xl"
+  >
+    <h1 class="text-3xl font-bold mb-3 text-gray-900">{{ post.title }}</h1>
+    <p class="text-gray-700 leading-relaxed mb-5">{{ post.body }}</p>
+    <div class="text-gray-500 text-sm">
+      <span class="font-medium">Posted by:</span> User ID {{ post.userId }}
+    </div>
+  </div>
+
+  <!-- Comments Section -->
+  <div
+    *ngIf="comments.length > 0"
+    class="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-xl"
+  >
+    <h2 class="text-2xl font-semibold mb-4 text-gray-900 border-b pb-2">
+      Comments ({{ comments.length }})
+    </h2>
+    <ul class="space-y-4">
+      <li
+        *ngFor="let comment of comments"
+        class="border-b pb-4 last:border-none"
+      >
+        <p class="text-lg font-medium text-gray-900">{{ comment.name }}</p>
+        <p class="text-gray-500 text-sm mb-2">
+          By: <span class="text-indigo-600">{{ comment.email }}</span>
+        </p>
+        <p class="text-gray-700 leading-relaxed">{{ comment.body }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- No Comments Section -->
+  <div
+    *ngIf="comments.length === 0"
+    class="bg-white shadow-lg rounded-lg p-6 transition-all hover:shadow-xl"
+  >
+    <p class="text-gray-500 text-center">
+      No comments available for this post.
+    </p>
+  </div>
+</div>

@@ -54,7 +54,6 @@ export class PostsComponent {
   }
 
   navigateToPost(id: number) {
-    console.log(`Navigating to post ${id}`);
     this.route.navigate([`/posts/${id}`]);
   }
 }
