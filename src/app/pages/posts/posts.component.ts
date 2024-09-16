@@ -60,4 +60,8 @@ export class PostsComponent {
   goToCreatePost() {
     this.route.navigate(['/posts/create']);
   }
+
+  goToHome() {
+    this.route.navigate(['/']);
+  }
 }

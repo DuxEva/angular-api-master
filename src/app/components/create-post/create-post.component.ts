@@ -44,4 +44,8 @@ export class CreatePostComponent implements OnInit {
       );
     }
   }
+
+  goToPosts() {
+    this.router.navigate(['/posts']);
+  }
 }

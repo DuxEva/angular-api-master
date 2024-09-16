@@ -1,3 +1,11 @@
+<div class="px-20">
+  <button
+    class="bg-blue-500 p-2 rounded-md text-white mt-8"
+    (click)="goToHome()"
+  >
+    Go Back
+  </button>
+</div>
 <div class="flex justify-center items-center w-screen py-8">
   <div class="w-[90%] mx-auto" [ngClass]="{ hidden: loading || errorMsg }">
     <table class="min-w-full border-collapse block md:table">
